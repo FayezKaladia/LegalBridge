@@ -138,10 +138,8 @@ const HowItWorks = () => {
                       index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                     }`}
                   >
-                    {/* Timeline dot */}
                     <div className="absolute left-6 md:left-1/2 w-3 h-3 rounded-full bg-primary transform -translate-x-1/2 mt-6 z-10" />
 
-                    {/* Content */}
                     <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
                       <Card className="hover:shadow-md transition-shadow">
                         <CardContent className="p-6">
@@ -174,7 +172,6 @@ const HowItWorks = () => {
           </div>
         </section>
 
-        {/* For Contributors */}
         <section className="py-16 md:py-20 bg-secondary/30">
           <div className="container">
             <div className="text-center mb-12">
@@ -218,7 +215,6 @@ const HowItWorks = () => {
           </div>
         </section>
 
-        {/* Ethics & Safety */}
         <section className="py-16 md:py-20">
           <div className="container">
             <div className="max-w-4xl mx-auto">
@@ -296,7 +292,6 @@ const HowItWorks = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-16 md:py-20 bg-gradient-hero text-primary-foreground">
           <div className="container">
             <div className="max-w-3xl mx-auto text-center">

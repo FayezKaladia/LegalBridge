@@ -1,9 +1,13 @@
 import { useState } from 'react';
+
+// Components
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { DisclaimerBanner } from '@/components/DisclaimerBanner';
 import { ContributorCard } from '@/components/ContributorCard';
 import { ConsentModal } from '@/components/ConsentModal';
+
+// UI Components
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,11 +20,17 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+// Types
 import { Contributor, ContributorRole, INDIAN_STATES } from '@/types/legal';
+
+// Icons
 import { Search, Filter, Users, GraduationCap, Briefcase, Scale } from 'lucide-react';
+
+// Utilities
 import { toast } from 'sonner';
 
-// Mock data for contributors
+// Mock data for all the contributors
 const MOCK_CONTRIBUTORS: Contributor[] = [
   {
     id: '1',
@@ -109,45 +119,81 @@ const MOCK_CONTRIBUTORS: Contributor[] = [
 ];
 
 const Contributors = () => {
+  
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedState, setSelectedState] = useState<string>('');
   const [selectedRole, setSelectedRole] = useState<ContributorRole | 'all'>('all');
   const [showConsentModal, setShowConsentModal] = useState(false);
-  const [selectedContributor, setSelectedContributor] = useState<Contributor | null>(null);
+  const [contributorToConnect, setContributorToConnect] = useState<Contributor | null>(null);
 
+  
   const filteredContributors = MOCK_CONTRIBUTORS.filter((contributor) => {
     const matchesSearch =
       searchQuery === '' ||
       contributor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      contributor.interests.some((i) => i.toLowerCase().includes(searchQuery.toLowerCase()));
-    const matchesState = selectedState === 'all' || selectedState === '' || contributor.state === selectedState;
+      contributor.interests.some((interest) =>
+        interest.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    const matchesState =
+      selectedState === 'all' || selectedState === '' || contributor.state === selectedState;
     const matchesRole = selectedRole === 'all' || contributor.role === selectedRole;
     return matchesSearch && matchesState && matchesRole;
   });
 
   const contributorsByRole = {
-    intern: filteredContributors.filter((c) => c.role === 'intern'),
-    paralegal: filteredContributors.filter((c) => c.role === 'paralegal'),
-    lawyer: filteredContributors.filter((c) => c.role === 'lawyer'),
+    intern: filteredContributors.filter((contributor) => contributor.role === 'intern'),
+    paralegal: filteredContributors.filter((contributor) => contributor.role === 'paralegal'),
+    lawyer: filteredContributors.filter((contributor) => contributor.role === 'lawyer'),
   };
 
   const handleConnect = (contributor: Contributor) => {
-    setSelectedContributor(contributor);
+    setContributorToConnect(contributor);
     setShowConsentModal(true);
   };
 
   const handleConsentAccept = () => {
     setShowConsentModal(false);
-    toast.success(`Connection request sent to ${selectedContributor?.name}!`, {
+    toast.success(`Connection request sent to ${contributorToConnect?.name}!`, {
       description: 'They will be notified and can accept your request.',
     });
-    setSelectedContributor(null);
+    setContributorToConnect(null);
   };
 
   const roleIcons = {
     intern: GraduationCap,
     paralegal: Briefcase,
     lawyer: Scale,
+  };
+
+  const renderTabContent = (contributors: Contributor[], role?: ContributorRole) => {
+    if (contributors.length === 0) {
+      const Icon = role ? roleIcons[role] : Users;
+      const roleText = role
+        ? (role === 'intern' ? 'law interns' : role === 'paralegal' ? 'paralegals' : 'lawyers')
+        : 'contributors';
+
+      return (
+        <div className="text-center py-12">
+          <Icon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+          <h3 className="font-semibold text-foreground mb-2">
+            No {roleText} found
+          </h3>
+          <p className="text-muted-foreground">Try adjusting your search or filters</p>
+        </div>
+      );
+    }
+
+    return (
+      <div className="grid md:grid-cols-2 gap-4">
+        {contributors.map((contributor) => (
+          <ContributorCard
+            key={contributor.id}
+            contributor={contributor}
+            onConnect={handleConnect}
+          />
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -168,7 +214,6 @@ const Contributors = () => {
 
           <DisclaimerBanner className="mb-8" />
 
-          {/* Filters */}
           <div className="bg-card border border-border rounded-xl p-4 mb-8">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1">
@@ -239,49 +284,12 @@ const Contributors = () => {
             </TabsList>
 
             <TabsContent value="all" className="space-y-4">
-              {filteredContributors.length === 0 ? (
-                <div className="text-center py-12">
-                  <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="font-semibold text-foreground mb-2">No contributors found</h3>
-                  <p className="text-muted-foreground">Try adjusting your search or filters</p>
-                </div>
-              ) : (
-                <div className="grid md:grid-cols-2 gap-4">
-                  {filteredContributors.map((contributor) => (
-                    <ContributorCard
-                      key={contributor.id}
-                      contributor={contributor}
-                      onConnect={handleConnect}
-                    />
-                  ))}
-                </div>
-              )}
+              {renderTabContent(filteredContributors)}
             </TabsContent>
 
             {(['intern', 'paralegal', 'lawyer'] as ContributorRole[]).map((role) => (
               <TabsContent key={role} value={role} className="space-y-4">
-                {contributorsByRole[role].length === 0 ? (
-                  <div className="text-center py-12">
-                    {(() => {
-                      const Icon = roleIcons[role];
-                      return <Icon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />;
-                    })()}
-                    <h3 className="font-semibold text-foreground mb-2">
-                      No {role === 'intern' ? 'law interns' : role === 'paralegal' ? 'paralegals' : 'lawyers'} found
-                    </h3>
-                    <p className="text-muted-foreground">Try adjusting your search or filters</p>
-                  </div>
-                ) : (
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {contributorsByRole[role].map((contributor) => (
-                      <ContributorCard
-                        key={contributor.id}
-                        contributor={contributor}
-                        onConnect={handleConnect}
-                      />
-                    ))}
-                  </div>
-                )}
+                {renderTabContent(contributorsByRole[role], role)}
               </TabsContent>
             ))}
           </Tabs>
@@ -308,7 +316,7 @@ const Contributors = () => {
         isOpen={showConsentModal}
         onClose={() => {
           setShowConsentModal(false);
-          setSelectedContributor(null);
+          setContributorToConnect(null);
         }}
         onAccept={handleConsentAccept}
         userType="seeker"

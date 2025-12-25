@@ -71,14 +71,14 @@ const SignIn = () => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // For demo purposes, accept any email/password combination
-      toast.success('Sign in successful!', {
+      // For demo accept any password and mail for working 
+      toast.success('Sign in is successful!', {
         description: 'Welcome back to LegalBridge.',
       });
 
       navigate(from, { replace: true });
     } catch (error) {
-      toast.error('Sign in failed', {
+      toast.error('Sign in has failed', {
         description: 'Please check your credentials and try again.',
       });
     } finally {
@@ -90,7 +90,6 @@ const SignIn = () => {
     setIsLoading(true);
 
     try {
-      // Simulate Google OAuth
       await new Promise(resolve => setTimeout(resolve, 1500));
 
       toast.success('Google sign in successful!', {
@@ -156,7 +155,6 @@ const SignIn = () => {
                 </div>
               </div>
 
-              {/* Email Sign In Form */}
               <form onSubmit={handleEmailSignIn} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
@@ -257,7 +255,6 @@ const SignIn = () => {
             </CardContent>
           </Card>
 
-          {/* Demo Credentials */}
           <Alert className="border-info/50 bg-info/5">
             <CheckCircle2 className="h-4 w-4 text-info" />
             <AlertDescription className="text-sm">

@@ -21,22 +21,22 @@ const Index = () => {
   const features = [
     {
       icon: FileText,
-      title: 'Structured Case Intake',
-      description: 'Guided questions convert your situation into an organized case summary.',
+      title: 'Simple Case guidance',
+      description: 'Answer a few simple questions and well help organize your situation clearly step by step ',
     },
     {
       icon: Users,
-      title: 'Verified Contributors',
+      title: 'Trusted Legal Suppport',
       description: 'Connect with law interns, paralegals, and pro-bono lawyers.',
     },
     {
       icon: Shield,
-      title: 'Privacy First',
+      title: 'your Privacy comes First',
       description: 'Your identity stays hidden until you choose to connect.',
     },
     {
       icon: Handshake,
-      title: 'Ethical Boundaries',
+      title: 'Ethical and Responsible Help',
       description: 'Clear guidelines ensure responsible legal assistance.',
     },
   ];
@@ -59,8 +59,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="flex-1">
-        {/* Hero Section */}
+      <main className="flex-1"> 
         <section className="relative overflow-hidden bg-gradient-hero text-primary-foreground py-20 md:py-28">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyek0zNiAyNHYySDI0di0yaDEyek0zNiAxNHYySDI0di0yaDF6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50" />
           
@@ -106,16 +105,13 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Decorative elements */}
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
         </section>
 
-        {/* Disclaimer Banner */}
         <section className="container -mt-12 relative z-10">
           <DisclaimerBanner className="shadow-lg" />
         </section>
 
-        {/* Stats Section */}
         <section className="py-16 border-b border-border">
           <div className="container">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -131,7 +127,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Features Section */}
         <section className="py-20">
           <div className="container">
             <div className="text-center max-w-2xl mx-auto mb-12">
@@ -161,7 +156,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* How It Works Section */}
         <section className="py-20 bg-secondary/30">
           <div className="container">
             <div className="text-center max-w-2xl mx-auto mb-12">
@@ -192,7 +186,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Case Categories Preview */}
         <section className="py-20">
           <div className="container">
             <div className="text-center max-w-2xl mx-auto mb-12">
@@ -233,7 +226,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* What We Don't Do Section */}
         <section className="py-20 bg-destructive/5">
           <div className="container">
             <div className="max-w-3xl mx-auto">
@@ -301,7 +293,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-20 bg-gradient-hero text-primary-foreground">
           <div className="container">
             <div className="max-w-3xl mx-auto text-center">

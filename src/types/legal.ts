@@ -1,3 +1,7 @@
+/**
+ * Defines the available legal case categories supported by the platform.
+ * Used for case classification and user guidance.
+ */
 export type CaseCategory = {
   id: string;
   name: string;

@@ -6,45 +6,36 @@
 
 @layer base {
   :root {
-    /* Primary - Deep Indigo for trust and authority */
     --primary: 230 50% 25%;
     --primary-foreground: 45 100% 96%;
     
-    /* Background - Warm off-white */
     --background: 45 30% 97%;
     --foreground: 230 30% 15%;
 
-    /* Card - Clean white with subtle warmth */
     --card: 45 30% 99%;
     --card-foreground: 230 30% 15%;
 
     --popover: 45 30% 99%;
     --popover-foreground: 230 30% 15%;
 
-    /* Secondary - Light indigo wash */
     --secondary: 230 30% 94%;
     --secondary-foreground: 230 50% 25%;
 
-    /* Muted - Neutral grays with warmth */
     --muted: 230 15% 92%;
     --muted-foreground: 230 15% 45%;
 
-    /* Accent - Warm Amber/Gold for justice */
     --accent: 38 92% 50%;
     --accent-foreground: 230 50% 15%;
 
-    /* Destructive */
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Borders */
     --border: 230 20% 88%;
     --input: 230 20% 88%;
     --ring: 38 92% 50%;
 
     --radius: 0.625rem;
 
-    /* Custom tokens */
     --success: 152 69% 35%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
@@ -52,19 +43,16 @@
     --info: 205 85% 45%;
     --info-foreground: 0 0% 100%;
 
-    /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(230 50% 25%) 0%, hsl(230 45% 35%) 50%, hsl(38 60% 45%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(45 30% 99%) 0%, hsl(45 25% 96%) 100%);
     --gradient-accent: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(32 90% 45%) 100%);
 
-    /* Shadows */
     --shadow-sm: 0 1px 2px 0 hsl(230 30% 15% / 0.05);
     --shadow-md: 0 4px 6px -1px hsl(230 30% 15% / 0.07), 0 2px 4px -2px hsl(230 30% 15% / 0.05);
     --shadow-lg: 0 10px 15px -3px hsl(230 30% 15% / 0.08), 0 4px 6px -4px hsl(230 30% 15% / 0.05);
     --shadow-xl: 0 20px 25px -5px hsl(230 30% 15% / 0.1), 0 8px 10px -6px hsl(230 30% 15% / 0.08);
     --shadow-glow: 0 0 30px hsl(38 92% 50% / 0.2);
 
-    /* Sidebar */
     --sidebar-background: 230 50% 25%;
     --sidebar-foreground: 45 100% 96%;
     --sidebar-primary: 38 92% 50%;
