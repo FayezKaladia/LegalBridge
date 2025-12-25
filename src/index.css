@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary - Deep Indigo for trust and authority */
+    --primary: 230 50% 25%;
+    --primary-foreground: 45 100% 96%;
+    
+    /* Background - Warm off-white */
+    --background: 45 30% 97%;
+    --foreground: 230 30% 15%;
+
+    /* Card - Clean white with subtle warmth */
+    --card: 45 30% 99%;
+    --card-foreground: 230 30% 15%;
+
+    --popover: 45 30% 99%;
+    --popover-foreground: 230 30% 15%;
+
+    /* Secondary - Light indigo wash */
+    --secondary: 230 30% 94%;
+    --secondary-foreground: 230 50% 25%;
+
+    /* Muted - Neutral grays with warmth */
+    --muted: 230 15% 92%;
+    --muted-foreground: 230 15% 45%;
+
+    /* Accent - Warm Amber/Gold for justice */
+    --accent: 38 92% 50%;
+    --accent-foreground: 230 50% 15%;
+
+    /* Destructive */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders */
+    --border: 230 20% 88%;
+    --input: 230 20% 88%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.625rem;
+
+    /* Custom tokens */
+    --success: 152 69% 35%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 230 50% 15%;
+    --info: 205 85% 45%;
+    --info-foreground: 0 0% 100%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(230 50% 25%) 0%, hsl(230 45% 35%) 50%, hsl(38 60% 45%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(45 30% 99%) 0%, hsl(45 25% 96%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(32 90% 45%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(230 30% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(230 30% 15% / 0.07), 0 2px 4px -2px hsl(230 30% 15% / 0.05);
+    --shadow-lg: 0 10px 15px -3px hsl(230 30% 15% / 0.08), 0 4px 6px -4px hsl(230 30% 15% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(230 30% 15% / 0.1), 0 8px 10px -6px hsl(230 30% 15% / 0.08);
+    --shadow-glow: 0 0 30px hsl(38 92% 50% / 0.2);
+
+    /* Sidebar */
+    --sidebar-background: 230 50% 25%;
+    --sidebar-foreground: 45 100% 96%;
+    --sidebar-primary: 38 92% 50%;
+    --sidebar-primary-foreground: 230 50% 15%;
+    --sidebar-accent: 230 45% 35%;
+    --sidebar-accent-foreground: 45 100% 96%;
+    --sidebar-border: 230 40% 30%;
+    --sidebar-ring: 38 92% 50%;
+  }
+
+  .dark {
+    --background: 230 30% 8%;
+    --foreground: 45 20% 95%;
+
+    --card: 230 25% 12%;
+    --card-foreground: 45 20% 95%;
+
+    --popover: 230 25% 12%;
+    --popover-foreground: 45 20% 95%;
+
+    --primary: 38 92% 55%;
+    --primary-foreground: 230 50% 10%;
+
+    --secondary: 230 25% 18%;
+    --secondary-foreground: 45 20% 95%;
+
+    --muted: 230 20% 20%;
+    --muted-foreground: 230 15% 60%;
+
+    --accent: 38 92% 55%;
+    --accent-foreground: 230 50% 10%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 25% 20%;
+    --input: 230 25% 20%;
+    --ring: 38 92% 55%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(230 30% 8%) 0%, hsl(230 35% 15%) 50%, hsl(38 50% 20%) 100%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Libre Baskerville', serif;
+  }
+}
+
+@layer components {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    @apply bg-card/80 backdrop-blur-md border border-border/50;
+  }
+
+  .disclaimer-banner {
+    @apply bg-warning/10 border border-warning/30 text-warning-foreground rounded-lg px-4 py-3 text-sm;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+
+  @keyframes scaleIn {
+    from { 
+      opacity: 0; 
+      transform: scale(0.95); 
+    }
+    to { 
+      opacity: 1; 
+      transform: scale(1); 
+    }
+  }
+}

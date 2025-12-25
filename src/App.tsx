@@ -1,0 +1,37 @@
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Index from "./pages/Index";
+import SubmitCase from "./pages/SubmitCase";
+import Contributors from "./pages/Contributors";
+import HowItWorks from "./pages/HowItWorks";
+import NotFound from "./pages/NotFound";
+import SignIn from "./pages/SignIn";
+import JoinContributor from "./pages/JoinContributor";
+
+const queryClient = new QueryClient();
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster /> 
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/submit-case" element={<SubmitCase />} />
+          <Route path="/contributors" element={<Contributors />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/join-contributor" element={<JoinContributor />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
